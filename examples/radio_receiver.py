@@ -27,7 +27,7 @@ class PrintLines(LineReader):
         if data == "radio_err":
             self.send_cmd('radio rx 0')
             return
-        data = data.decode('hex')
+        data = data.strip().decode('hex')
         print("RECV: %s" % data)
 
 
