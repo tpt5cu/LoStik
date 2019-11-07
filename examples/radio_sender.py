@@ -37,7 +37,10 @@ class PrintLines(LineReader):
 
     def tx(self):
         self.send_cmd("sys set pindig GPIO11 1")
+        #Convert to hexadecimal 
         txmsg = 'radio tx %x%x' % (int(time.time()), self.frame_count)
+        #Hexadecimal for 'hello'
+        txmsg = 'radio tx 68656c6c6f'
         self.send_cmd(txmsg)
         time.sleep(.3)
         self.send_cmd("sys set pindig GPIO11 0")
