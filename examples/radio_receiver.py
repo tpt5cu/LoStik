@@ -27,12 +27,14 @@ class PrintLines(LineReader):
         if data == "radio_err":
             self.send_cmd('radio rx 0')
             return
-        data = data.strip().decode('hex')
+        data = data.split()
+        hexData = data[-1]
+        rawData = hexData.strip().decode('hex')
         # print("RECV: %s" % data)
 
 
         self.send_cmd("sys set pindig GPIO10 1", delay=0)
-        print(data)
+        print(rawData)
         time.sleep(.1)
         self.send_cmd("sys set pindig GPIO10 0", delay=1)
         self.send_cmd('radio rx 0')
