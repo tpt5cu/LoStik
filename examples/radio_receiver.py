@@ -27,9 +27,10 @@ class PrintLines(LineReader):
         if data == "radio_err":
             self.send_cmd('radio rx 0')
             return
+        data = data.decode('hex')
         print("RECV: %s" % data)
 
-        
+
         self.send_cmd("sys set pindig GPIO10 1", delay=0)
         print(data)
         time.sleep(.1)
@@ -42,6 +43,7 @@ class PrintLines(LineReader):
         print("port closed")
 
     def send_cmd(self, cmd, delay=.5):
+        print("SEND: %s" % cmd)
         self.transport.write(('%s\r\n' % cmd).encode('UTF-8'))
         time.sleep(delay)
 
