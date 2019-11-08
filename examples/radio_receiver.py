@@ -51,7 +51,8 @@ class PrintLines(LineReader):
 
 ser = serial.Serial(args.port, baudrate=57600)
 with ReaderThread(ser, PrintLines) as protocol:
+    protocol.send_cmd("sys set pindig GPIO10 1", delay=0)
     protocol.write_line("waiting waiting")
-    send_cmd("sys set pindig GPIO10 1", delay=0)
+    # send_cmd("sys set pindig GPIO10 1", delay=0)
     while(1):
         pass
