@@ -61,4 +61,4 @@ with ReaderThread(ser, PrintLines) as protocol:
     while(1):
         val +=1
         protocol.tx(val)
-        time.sleep(10)
+        time.sleep(0.1)
