@@ -27,6 +27,8 @@ class PrintLines(LineReader):
         if data == "radio_err":
             self.send_cmd('radio rx 0')
             return
+        if data == 'RN2903 1.0.3 Aug  8 2017 15:11:09':
+            return
         print data
         data = data.split()
         print data 
@@ -51,8 +53,8 @@ class PrintLines(LineReader):
 
 ser = serial.Serial(args.port, baudrate=57600)
 with ReaderThread(ser, PrintLines) as protocol:
-    protocol.send_cmd("sys set pindig GPIO10 1", delay=0)
-    protocol.write_line("waiting waiting")
+    # protocol.send_cmd("sys set pindig GPIO10 1", delay=0)
+    # protocol.write_line("waiting waiting")
     # send_cmd("sys set pindig GPIO10 1", delay=0)
     while(1):
         pass
